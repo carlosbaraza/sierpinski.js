@@ -19,6 +19,7 @@
     "browserify": "^11.0.1",
     "gulp": "^3.9.0",
     "gulp-babel": "^5.2.1",
+    "gulp-sass": "^2.0.4",
     "vinyl-source-stream": "^1.1.0"
   }
 }
