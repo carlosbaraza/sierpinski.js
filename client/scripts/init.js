@@ -63,15 +63,13 @@ function splitTriangle(triangle) {
 }
 
 // Merge the deepest triangle level.
-// TODO: Refactor and write tests.
 function mergeTriangles() {
-  var isGraphic = (graphic) => graphic.constructor === PIXI.Graphics;
-  var allGraphics = (graphics) => _.every(graphics, isGraphic);
-
   triangles = triangles.map(merge);
 
+  function areAllGraphics(graphics) { return _.every(graphics, isGraphic); }
+  function isGraphic(graphic) { return graphic.constructor === PIXI.Graphics; }
   function merge(triangles) {
-    if (triangles.constructor === Array && allGraphics(triangles)) {
+    if (triangles.constructor === Array && areAllGraphics(triangles)) {
       // Resize the remaining graphic
       var newScale = triangles[0].scale.x * 2;
       triangles[0].scale.set(newScale, newScale);
