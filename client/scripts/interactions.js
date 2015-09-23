@@ -16,9 +16,11 @@ export function zoomAndPanStart(stage, renderer) {
       y: (y - stage.y) / stage.scale.y
     };
 
+    var newScaleX = stage.scale.x * factor,
+        newScaleY = stage.scale.y * factor;
     var newScale = {
-      x: stage.scale.x * factor,
-      y: stage.scale.y * factor
+      x: newScaleX > 0.5 ? newScaleX : 0.5,
+      y: newScaleY > 0.5 ? newScaleY : 0.5
     };
 
     var newScreenPos = {
