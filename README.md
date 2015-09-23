@@ -3,6 +3,37 @@ This single-page application shows a Sierpinski Triangle, where it is possible
 to freely zoom and pan undefinitly.
 
 
+# Roadmap 1.0
+* ~~Setup development environment~~
+  * ~~Gulp build tasks~~
+  * ~~ES2015~~
+  * ~~Sass~~
+  * ~~Auto browser reload for reactive programming~~
+* Setup testing environment.
+  * Gulp test builds
+  * Karma
+  * Mocha && Chai / Jasmine
+  * CI
+* ~~Represent simple Sierpinski Triangle~~
+  * ~~Basic file structure~~
+* Zoom and Pitch.
+  * ~~Basic implementation~~
+  * Mobile pinch and pan experience
+  * Acceleration-based zoom and pan to improve UX.
+* Refactor modules
+  * Rename files and reorganize.
+  * Maybe use ES2015 classes?
+* Infinite zoom and pan
+  * ~~Cull non-visible elements~~
+  * Split and merge
+    * Split visible triangles until optimal amount of triangles in screen.
+    * Split newly visible triangles to same split degree.
+    * Merge triangles when zooming out.
+  * Optimize performance. Using simpler graphical objects and render groups.
+* Nice UI to control the app.
+* Cool WebGL shaders to beautify the Sierpinski Triangle.
+
+
 # My current thoughts
 In this section I will display what I am thinking during at the moment of the
 last commit.
@@ -57,9 +88,3 @@ new elements being created.
 
 The only problem of this approach is that the complexity is moved from the
 CPU/Memory to the design of the fetching and moving algorithms.
-
-
-# Roadmap
-* Zoom and Pitch.
-* Set up testing environment.
-* Refactor modules (Maybe using ES2015 classes?).
