@@ -40,6 +40,7 @@ function splitTriangles() { triangles = triangles.map(splitTriangle); }
 // Split the deepest layer of triangles from given triangle
 function splitTriangle(triangle) {
   if (triangle.constructor === Array) return triangle.map(splitTriangle);
+  if (!triangle.visible) return triangle;
 
   triangle.scale.x *= 0.5;
   triangle.scale.y *= 0.5;
