@@ -25,11 +25,12 @@ to freely zoom and pan undefinitly.
   * Maybe use ES2015 classes?
 * Infinite zoom and pan
   * ~~Cull non-visible elements~~
-  * Split and merge
-    * Split visible triangles until optimal amount of triangles in screen.
-    * Split newly visible triangles to same split degree.
-    * Merge triangles when zooming out.
+  * ~~Split and merge~~
+    * ~~Split visible triangles until optimal amount of triangles in screen.~~
+    * ~~Split newly visible triangles to same split degree.~~
+    * ~~Merge triangles when zooming out.~~
   * Optimize performance. Using simpler graphical objects and render groups.
+  * Workaround scale limit of 48E11 for infinite zoom.
 * Nice UI to control the app.
 * Cool WebGL shaders to beautify the Sierpinski Triangle.
 

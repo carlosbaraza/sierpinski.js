@@ -36,7 +36,8 @@ function isOutOfCanvas(point) {
   var canvasX = stage.x + point.x * stage.scale.x;
   var canvasY = stage.y + point.y * stage.scale.y;
 
-  if (canvasX < 0 || canvasX > renderer.width ||
-      canvasY < 0 || canvasY > renderer.height) return true;
+  // Use .5*ViewPortSize margin
+  if (canvasX < -renderer.width /2 || canvasX > renderer.width *1.5 ||
+      canvasY < -renderer.height/2 || canvasY > renderer.height*1.5) return true;
   return false;
 }

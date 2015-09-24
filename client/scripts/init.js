@@ -7,7 +7,6 @@ import { renderer, stage } from './stage';
 
 // Collection to keep track of the triangles (Array of Arrays)
 var triangles = sierpinski();
-for (let i = 0; i < 7; i++) splitTriangles();
 
 export { triangles, splitTriangles, mergeTriangles };
 
@@ -34,14 +33,21 @@ function sierpinski() {
   }
 }
 
-// Split the deepest layer of triangles
-function splitTriangles() { triangles = triangles.map(splitTriangle); }
+// Split visible triangles, wider than maxWidth
+function splitTriangles(maxWidth = 0) {
+  var isSplitable = (tr) => tr.width * stage.scale.x > maxWidth;
 
-// Split the deepest layer of triangles from given triangle
+  triangles = triangles
+    .map(function findSplitableTriangles(obj) {
+      if (obj.constructor === Array)
+        return obj.map(findSplitableTriangles);
+      if (!obj.visible) return obj;
+      if (isSplitable(obj)) return splitTriangle(obj);
+      return obj;
+    });
+}
+
 function splitTriangle(triangle) {
-  if (triangle.constructor === Array) return triangle.map(splitTriangle);
-  if (!triangle.visible) return triangle;
-
   triangle.scale.x *= 0.5;
   triangle.scale.y *= 0.5;
 
@@ -63,25 +69,31 @@ function splitTriangle(triangle) {
   return [triangle, newTriangle1, newTriangle2];
 }
 
-// Merge the deepest triangle level.
-function mergeTriangles() {
-  triangles = triangles.map(merge);
+// Merge triangles wider than minWidth.
+function mergeTriangles(minWidth = 5) {
+  triangles = triangles
+    .map(function findMergeableTriangles(obj) {
+      if (obj.constructor === Array && areAllGraphics(obj)) {
+        if (smallerThanMin(obj)) return _mergeTriangles(obj);
+        return obj;
+      }
+      if (obj.constructor === Array) return obj.map(findMergeableTriangles);
+      return obj;
+    });
 
   function areAllGraphics(graphics) { return _.every(graphics, isGraphic); }
   function isGraphic(graphic) { return graphic.constructor === PIXI.Graphics; }
-  function merge(triangles) {
-    if (triangles.constructor === Array && areAllGraphics(triangles)) {
-      // Resize the remaining graphic
-      var newScale = triangles[0].scale.x * 2;
-      triangles[0].scale.set(newScale, newScale);
+  function _mergeTriangles(triangles) {
+    // Resize the remaining graphic
+    var newScale = triangles[0].scale.x * 2;
+    triangles[0].scale.set(newScale, newScale);
 
-      stage.removeChild(triangles[1]);
-      stage.removeChild(triangles[2]);
+    stage.removeChild(triangles[1]);
+    stage.removeChild(triangles[2]);
 
-      return triangles[0];
-    } else if (triangles.constructor === Array) {
-      return triangles.map(merge);
-    }
-    return triangles;
+    return triangles[0];
+  }
+  function smallerThanMin(triangles) {
+    return _.every(triangles, (tr) => tr.width * stage.scale.x < minWidth);
   }
 }
