@@ -82,16 +82,16 @@ gulp.task('tdd', function (done) {
 
 // Run test once and exit
 gulp.task('ci', [
-  'scripts:client',
-  'scripts:client:workers',
-  'scripts:vendor:client',
-  'sass',
-  function (done) {
+    'scripts:client',
+    'scripts:client:workers',
+    'scripts:vendor:client',
+    'sass'
+  ], function (done) {
     new Server({
       configFile: __dirname + '/.ci.karma.conf.js',
       singleRun: true
     }, done).start();
-  }]);
+  });
 
 /******************************************************************************/
 // Documentation
