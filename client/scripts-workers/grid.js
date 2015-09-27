@@ -131,10 +131,10 @@ Grid.prototype.cull = function () {
     var absY = this._config.position.y + y * this._config.scale.y;
 
     // Use .5*ViewPortSize margin
-    if (absX < -this._config.canvasWidth / 2   ||
-        absX >  this._config.canvasWidth * 1.5 ||
-        absY < -this._config.canvasHeight / 2  ||
-        absY >  this._config.canvasHeight * 1.5 ) return true;
+    if (absX < -this._config.canvasWidth      ||
+        absX >  this._config.canvasWidth * 2  ||
+        absY < -this._config.canvasHeight     ||
+        absY >  this._config.canvasHeight * 2  ) return true;
 
     return false;
   };
