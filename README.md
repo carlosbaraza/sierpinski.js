@@ -10,9 +10,9 @@ to freely zoom and pan undefinitly.
   * ~~Sass~~
   * ~~Auto browser reload for reactive programming~~
 * Setup testing environment.
-  * Gulp test builds
-  * Karma
-  * Mocha && Chai / Jasmine
+  * ~~Gulp test builds~~
+  * ~~Karma~~
+  * ~~Mocha && Chai / Jasmine~~
   * CI
 * ~~Represent simple Sierpinski Triangle~~
   * ~~Basic file structure~~
@@ -30,6 +30,7 @@ to freely zoom and pan undefinitly.
     * ~~Split newly visible triangles to same split degree.~~
     * ~~Merge triangles when zooming out.~~
   * Optimize performance. Using simpler graphical objects and render groups.
+  * ~~Optimize performance. Move culling, splitting and merging to workers.~~
   * Workaround scale limit of 48E11 for infinite zoom.
 * Nice UI to control the app.
 * Cool WebGL shaders to beautify the Sierpinski Triangle.
