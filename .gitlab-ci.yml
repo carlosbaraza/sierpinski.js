@@ -1,5 +1,5 @@
 job1:
   script:
-    - "npm install"
+    - "npm install -q"
     - "bower install"
     - "gulp ci"
