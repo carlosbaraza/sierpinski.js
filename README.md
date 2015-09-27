@@ -1,3 +1,6 @@
+[![Build status](http://arm.carlosbaraza.com/ci/projects/1/status.png?ref=develop)]
+(http://arm.carlosbaraza.com/ci/projects/1?ref=develop)
+
 # Sierpinski Triangle
 This single-page application shows a Sierpinski Triangle, where it is possible
 to freely zoom and pan undefinitly.
