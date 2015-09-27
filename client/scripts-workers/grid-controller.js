@@ -2,23 +2,26 @@
  * @file This is the master file for the web workers that compute the new states
  * of the displayed elements asynchronously.
  * @author Carlos Baraza
+ * @module workers/grid-controller
  */
 
 import { Grid } from './grid';
 
-var config = {},
-    grid;
+var grid;
 
 var _messageHandlers = {
-  setConfig: function (data) {
-    config = data;
-    if (!grid) grid = new Grid(config);
+  setConfig: function (config) {
+    if (!grid) {
+      grid = new Grid(config);
+    } else {
+      grid.setConfig(config);
+    }
     this.digest();
   },
   digest: function () {
     grid.cull();
-    grid.splitChildren();
     grid.mergeChildren();
+    grid.splitChildren();
     var msg = { type: 'update', data: grid.getChildrenVisibleFlatten() };
     postMessage(JSON.stringify(msg));
   }
@@ -41,6 +44,6 @@ onmessage = function (e) {
  * @type {Object}
  */
 export var debug = {
-  getConfig: () => config,
-  reset: () => grid = new Grid(config)
+  getConfig: () => grid._config,
+  reset: () => grid = null
 };

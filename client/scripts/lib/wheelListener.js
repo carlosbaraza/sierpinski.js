@@ -1,6 +1,8 @@
-/******************************************************************************/
-// Listener for wheel events
-/******************************************************************************/
+/**
+ * @file Custom cross-browser implementation of wheelListener
+ * @description Custom cross-browser implementation of wheelListener
+ * @module lib/wheelListener
+ */
 
 var prefix = "",
     addEventListener = detectEventModel(),

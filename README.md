@@ -9,20 +9,20 @@ to freely zoom and pan undefinitly.
   * ~~ES2015~~
   * ~~Sass~~
   * ~~Auto browser reload for reactive programming~~
-* Setup testing environment.
+* ~~Setup testing environment.~~
   * ~~Gulp test builds~~
   * ~~Karma~~
   * ~~Mocha && Chai / Jasmine~~
-  * CI
+  * ~~CI~~
 * ~~Represent simple Sierpinski Triangle~~
   * ~~Basic file structure~~
 * Zoom and Pitch.
   * ~~Basic implementation~~
   * Mobile pinch and pan experience
   * Acceleration-based zoom and pan to improve UX.
-* Refactor modules
-  * Rename files and reorganize.
-  * Maybe use ES2015 classes?
+* ~~Refactor modules~~
+  * ~~Rename files and reorganize.~~
+  * ~~Maybe use ES2015 classes?~~
 * Infinite zoom and pan
   * ~~Cull non-visible elements~~
   * ~~Split and merge~~

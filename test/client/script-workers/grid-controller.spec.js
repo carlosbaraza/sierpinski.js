@@ -11,7 +11,8 @@ describe('Sierpinski Worker', () => {
   });
 
   it('allows setting configuration', () => {
-    expect(debug.getConfig()).toEqual(config);
+    expect(debug.getConfig().canvasWidth).toEqual(config.canvasWidth);
+    expect(debug.getConfig().canvasHeight).toEqual(config.canvasHeight);
   });
 
   it('respond with visible children after updating configuration', () => {
@@ -41,7 +42,7 @@ describe('Sierpinski Worker', () => {
  * Mock postMessage to worker
  */
 function postMessage(message) {
-  var messageEvent = { data: message } // Mock MessageEvent
+  var messageEvent = { data: message }; // Mock MessageEvent
   onmessage(messageEvent);
 }
 

@@ -32,7 +32,6 @@ gulp.task('scripts:client', function () {
 // Bundle ES2015 client web worker scripts
 gulp.task('scripts:client:workers', function () {
   return browserify(['client/scripts-workers/grid-controller.js'], { debug: true })
-    .external(dependencies)
     .transform(babelify)
     .bundle()
     .pipe(source('grid-worker.js'))

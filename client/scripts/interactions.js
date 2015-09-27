@@ -1,5 +1,16 @@
+/**
+ * @file Module to handle interactions with application.
+ * @description Encapsulates handlers for interactions with the application.
+ * @module interactions
+ */
+
 import { addWheelListener } from './lib/wheelListener';
 
+/**
+ * Exported function to initiate the zoom and panning in the app.
+ * @param  {PIXI.Container} stage - Container of the objects.
+ * @param  {PIXI.WebGLRenderer} renderer - Object that extends canvas.
+ */
 export function zoomAndPanStart(stage, renderer) {
   addWheelListener(renderer.view, (e) => {
     zoom(e.clientX, e.clientY, e.deltaY < 0);

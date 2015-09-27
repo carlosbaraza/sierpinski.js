@@ -1,20 +1,38 @@
-/******************************************************************************/
-// Stage / Canvas set up.
-/******************************************************************************/
+/**
+ * @module stage
+ * @description This ES2015 module will set up the `PIXI.WebGLRenderer` and
+ * `PIXI.Container` and export them. As ES2015 modules act like Singletons,
+ * this module could be imported whenever it is needed access to the
+ * `stage` and `renderer`.
+ */
 
 var canvas = getCanvas();
 var renderer = new PIXI.WebGLRenderer(canvas.width, canvas.height, {
   view: canvas.el
 });
 
-window.onresize = resizePixiRenderer; // Update renderer size after resize.
+/** Update renderer size after resize. */
+window.onresize = resizePixiRenderer;
 
 var stage = new PIXI.Container();
 stage.interactive = true;
 
-export { renderer, stage, cull };
+export default {
+  /** Exported `PIXI.WebGLRenderer` */
+  renderer,
+  /** Exported `PIXI.Container` */
+  stage
+};
 
 
+/******************************************************************************/
+// Hoisted functions
+/******************************************************************************/
+
+/**
+ * Find canvas DOM element
+ * @return {Object} `{el: {CanvasDOMElement}, width: {Number}, height: {Number}}`
+ */
 function getCanvas() {
   var el = document.getElementById('canvas'),
       width = el.offsetWidth,
@@ -22,22 +40,11 @@ function getCanvas() {
   return { el, width, height };
 }
 
+/**
+ * `window.onresize` event handler. Resizes the PIXI renderer to adjust to new
+ * window size.
+ */
 function resizePixiRenderer() {
   var canvas = getCanvas();
   renderer.resize(canvas.width, canvas.height);
-}
-
-function cull() {
-  for (var i = 0; i < stage.children.length; i++)
-    stage.children[i].visible = !isOutOfCanvas(stage.children[i].position);
-}
-
-function isOutOfCanvas(point) {
-  var canvasX = stage.x + point.x * stage.scale.x;
-  var canvasY = stage.y + point.y * stage.scale.y;
-
-  // Use .5*ViewPortSize margin
-  if (canvasX < -renderer.width /2 || canvasX > renderer.width *1.5 ||
-      canvasY < -renderer.height/2 || canvasY > renderer.height*1.5) return true;
-  return false;
 }

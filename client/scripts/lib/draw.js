@@ -1,15 +1,24 @@
-/******************************************************************************/
-// Library with functions to draw
-/******************************************************************************/
+/**
+ * @file Library with functions to draw
+ * @description Library with functions to draw
+ * @module lib/draw
+ */
 
 import _ from 'lodash';
-import { graphics } from '../init';
 
-// Build PIXI.Graphics with triangle shape
+/**
+ * Build PIXI.Graphics with triangle shape
+ * @param  {Object} opts - Options for the triangle build.
+ * @param  {Number} opts.base - Triangle width/base.
+ * @param  {Number} opts.x - Initial X position.
+ * @param  {Number} opts.y - Initial Y position.
+ * @param  {Object} opts.scale - Equivalent to `PIXI.Graphics.scale`
+ * @param  {Number} opts.scale.x - x scale.
+ * @param  {Number} opts.scale.y - y scale.
+ * @param  {Object} opts.visible - Will the element be visible initially.
+ * @return {PIXI.Graphics} Triangle object that could be added to PIXI stage.
+ */
 export function triangle(opts) {
-  // TODO: Find a more efficient way to render a triangle. Maybe using directly
-  // WebGL API.
-
   var position = new PIXI.Point(opts.x || 0, opts.y || 0);
   opts.scale = opts.scale || {};
   var scale = new PIXI.Point(opts.scale.x || 1, opts.scale.y || 1);
@@ -28,6 +37,7 @@ export function triangle(opts) {
 
   graphics.position = position;
   graphics.scale = scale;
+  if (opts.visible !== undefined) graphics.visible = opts.visible;
 
   return graphics;
 }

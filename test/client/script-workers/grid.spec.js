@@ -16,7 +16,7 @@ describe('Grid', () => {
   it('builds the initial triangle with canvasWidth and centered', () => {
     var grid = new Grid(_configFixture);
     expect(grid._getGrid()[0].width).toBe(_configFixture.canvasWidth);
-    expect(grid._getGrid()[0].y).toBeCloseTo(70, -1); // (1-sin(60deg))/2*height
+    expect(grid._getGrid()[0].y).toBeCloseTo(930, -1);
   });
 
   describe('children culling', () => {

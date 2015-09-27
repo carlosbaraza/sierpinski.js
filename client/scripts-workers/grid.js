@@ -1,3 +1,9 @@
+/**
+ * @file Grid constructor. See {@link Grid}
+ * @description See {@link Grid} for further information.
+ * @module workers/grid
+ */
+
 import _ from 'lodash';
 
 /**
@@ -104,7 +110,7 @@ Grid.prototype._configSanityChecks = function _configSanityChecks(cfg = []) {
  * @return {Array} Visible children
  */
 Grid.prototype.getChildrenVisibleFlatten = function getChildrenVisibleFlatten(){
-  return _.filter(_.flattenDeep(this._getGrid()), (child) => child.visible)
+  return _.filter(_.flattenDeep(this._getGrid()), (child) => child.visible);
 };
 
 /**
@@ -143,12 +149,15 @@ Grid.prototype.splitChildren = function splitChildren() {
   var splitWiderThan = this._config.splitWiderThan || 0;
   var isSplitable = (tr) => tr.width * this._config.scale.x > splitWiderThan;
 
+  var that = this;
   this._setGrid(
     this._getGrid().map(function findSplitableTriangles(obj) {
       if (obj.constructor === Array)
         return obj.map(findSplitableTriangles);
       if (!obj.visible) return obj;
-      if (isSplitable(obj)) return splitChild(obj);
+      if (isSplitable(obj)) {
+        return splitChild(obj);
+      }
       return obj;
     })
   );
@@ -175,11 +184,12 @@ Grid.prototype.mergeChildren = function mergeChildren() {
   function notArray(obj) { return obj.constructor !== Array; }
   function merge(children) {
     children[0].width *= 2;
+    children[0].height *= 2;
     return children[0];
   }
   function allNarrowerThanMaximum(children) {
     return _.every(children, (tr) => {
-      return tr.width < that._config.mergeNarrowerThan;
+      return tr.width * that._config.scale.x < that._config.mergeNarrowerThan;
     });
   }
 };
@@ -219,30 +229,37 @@ var _ERROR = {
   missingProperty: 'The configuration object should include property '
 };
 
+var _SIN60 = Math.sin(Math.PI / 180 * 60);
+
 function buildMasterTriangle(config) {
   var base = config.canvasWidth;
+  var height = base * _SIN60;
   return [{
     x: 0,
-    y: config.canvasHeight * (1 - Math.sin(Math.PI / 180 * 60)) / 2,
+    y: config.canvasHeight / 2 + height / 2,
     width: base,
+    height: height,
     visible: true
   }];
 }
 
 function splitChild(child) {
   child.width *= 0.5;
+  child.height *= 0.5;
 
   var newChild1 = {
     x: child.x + child.width,
     y: child.y,
     width: child.width,
+    height: child.height,
     visible: true
   };
 
   var newChild2 = {
     x: child.x + child.width / 2,
-    y: child.y - child.height,
+    y: child.y - child.width * _SIN60,
     width: child.width,
+    height: child.height,
     visible: true
   };
 

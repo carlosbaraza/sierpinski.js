@@ -1,3 +1,10 @@
+/**
+ * @file Main file.
+ * @description This module imports everything and orquestates the single
+ * page app.
+ * @module app
+ */
+
 import _ from 'lodash';
 import { renderer, stage } from './stage';
 import { animate } from './animate';
