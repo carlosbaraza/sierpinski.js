@@ -5,7 +5,7 @@
  */
 
 import _ from 'lodash';
-import { buildMasterTriangle, splitChild } from '../scripts/lib/sierpinski-utils';
+import { _SIN60, buildMasterTriangle, splitChild } from '../scripts/lib/sierpinski-utils';
 
 var _ERROR = {
   missingConfig: 'The first param should be a configuration object',
@@ -31,8 +31,7 @@ export function Grid(cfg) {
    * @type {Array[]}
    * @access private
    */
-  var _grid = buildMasterTriangle(this._config.canvasWidth);
-  _grid[0].y = this._config.canvasHeight / 2 + _grid[0].height / 2;
+  var _grid = buildInitialChild(this._config);
 
   /**
    * Get private _grid.
@@ -225,3 +224,22 @@ Grid.prototype._countObjects = function _countObjects() {
   this._lastCount = count;
   return this._lastCount;
 };
+
+function buildInitialChild(config) {
+  var mainTriangleBase, x, y;
+  if (config.canvasWidth <= config.canvasHeight) {
+    mainTriangleBase = config.canvasWidth * 0.9;
+    x = config.canvasWidth * 0.05;
+    y = config.canvasHeight / 2 + mainTriangleBase * _SIN60 / 2;
+  } else {
+    mainTriangleBase = config.canvasHeight * 0.9 / _SIN60;
+    x = config.canvasWidth / 2 - mainTriangleBase / 2;
+    y = config.canvasHeight * 0.95;
+  }
+
+  var _grid = buildMasterTriangle(mainTriangleBase);
+  _grid[0].x = x;
+  _grid[0].y = y;
+
+  return _grid;
+}
