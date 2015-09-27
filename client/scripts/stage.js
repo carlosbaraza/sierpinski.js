@@ -14,14 +14,30 @@ var renderer = new PIXI.WebGLRenderer(canvas.width, canvas.height, {
 /** Update renderer size after resize. */
 window.onresize = resizePixiRenderer;
 
+/**
+ * Main container. It will be rendered by the renderer during the animate loop.
+ */
+var container = new PIXI.Container();
+
 var stage = new PIXI.Container();
 stage.interactive = true;
+
+var bgSprite = PIXI.Sprite.fromImage('/client/images/nebula.jpeg');
+var bg = new PIXI.Container();
+bg.addChild(bgSprite);
+
+container.addChild(bg);
+container.addChild(stage);
 
 export default {
   /** Exported `PIXI.WebGLRenderer` */
   renderer,
   /** Exported `PIXI.Container` */
-  stage
+  container,
+  /** Exported `PIXI.DisplayObject` */
+  stage,
+  /** Exported `PIXI.DisplayObject` for background */
+  bg
 };
 
 

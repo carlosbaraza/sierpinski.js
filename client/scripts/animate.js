@@ -5,7 +5,7 @@
  * @module animate
  */
 
-import { renderer, stage } from './stage';
+import { renderer, stage, container } from './stage';
 import { setConfig } from './grid';
 import { stats } from './lib/stats';
 
@@ -29,7 +29,7 @@ function animate() {
   };
   if (frameCount % 15 === 0) setConfig(currentConfig);
 
-  renderer.render(stage);
+  renderer.render(container);
 
   if (frameCount > 60) frameCount = 0; // Reset counter every 60 frames.
   if (stats) stats.end();
