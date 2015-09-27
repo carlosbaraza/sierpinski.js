@@ -32,7 +32,8 @@ to freely zoom and pan undefinitly.
     * ~~Split visible triangles until optimal amount of triangles in screen.~~
     * ~~Split newly visible triangles to same split degree.~~
     * ~~Merge triangles when zooming out.~~
-  * Optimize performance. Using simpler graphical objects and render groups.
+  * ~~Optimize performance. Using simpler Sierpinski Triangle as basic drawing
+    element.~~
   * ~~Optimize performance. Move culling, splitting and merging to workers.~~
   * Workaround scale limit of 48E11 for infinite zoom.
 * Nice UI to control the app.

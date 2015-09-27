@@ -34,7 +34,7 @@ export { worker, setConfig };
  */
 function cacheChildren(number = 3000) {
   for (var i = 0; i < number; i++) {
-    stage.addChild( draw.triangle({base: 200, visible: false}) );
+    stage.addChild( draw.sierpinskiTriangle({base: 200, visible: false}) );
   }
 }
 

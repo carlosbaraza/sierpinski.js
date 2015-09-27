@@ -5,6 +5,12 @@
  */
 
 import _ from 'lodash';
+import { buildMasterTriangle, splitChild } from '../scripts/lib/sierpinski-utils';
+
+var _ERROR = {
+  missingConfig: 'The first param should be a configuration object',
+  missingProperty: 'The configuration object should include property '
+};
 
 /**
  * Collection that keeps track of current objects. Updates the structure when
@@ -25,7 +31,8 @@ export function Grid(cfg) {
    * @type {Array[]}
    * @access private
    */
-  var _grid = buildMasterTriangle(this._config);
+  var _grid = buildMasterTriangle(this._config.canvasWidth);
+  _grid[0].y = this._config.canvasHeight / 2 + _grid[0].height / 2;
 
   /**
    * Get private _grid.
@@ -73,8 +80,8 @@ Grid.prototype.setConfig = function setConfig(cfg) {
   var defaultCfg = {
     position:           {x: 0, y: 0},
     scale:              {x: 1, y: 1},
-    mergeNarrowerThan:  10,
-    splitWiderThan:     50,
+    mergeNarrowerThan:  100,
+    splitWiderThan:     300,
   };
   for (let key in defaultCfg)
     if (defaultCfg.hasOwnProperty(key)) this._config[key] = defaultCfg[key];
@@ -218,50 +225,3 @@ Grid.prototype._countObjects = function _countObjects() {
   this._lastCount = count;
   return this._lastCount;
 };
-
-
-/******************************************************************************/
-// Private to module
-/******************************************************************************/
-
-var _ERROR = {
-  missingConfig: 'The first param should be a configuration object',
-  missingProperty: 'The configuration object should include property '
-};
-
-var _SIN60 = Math.sin(Math.PI / 180 * 60);
-
-function buildMasterTriangle(config) {
-  var base = config.canvasWidth;
-  var height = base * _SIN60;
-  return [{
-    x: 0,
-    y: config.canvasHeight / 2 + height / 2,
-    width: base,
-    height: height,
-    visible: true
-  }];
-}
-
-function splitChild(child) {
-  child.width *= 0.5;
-  child.height *= 0.5;
-
-  var newChild1 = {
-    x: child.x + child.width,
-    y: child.y,
-    width: child.width,
-    height: child.height,
-    visible: true
-  };
-
-  var newChild2 = {
-    x: child.x + child.width / 2,
-    y: child.y - child.width * _SIN60,
-    width: child.width,
-    height: child.height,
-    visible: true
-  };
-
-  return [child, newChild1, newChild2];
-}

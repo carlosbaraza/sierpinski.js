@@ -3,7 +3,8 @@ import { debug } from '../../../client/scripts-workers/grid-controller.js';
 describe('Sierpinski Worker', () => {
   var config;
   beforeEach(() => {
-    config = { canvasHeight: 500, canvasWidth: 500 };
+    config = { canvasHeight: 500, canvasWidth: 500,
+               splitWiderThan: 0, mergeNarrowerThan: 0 };
     postMessage(JSON.stringify({
       type: 'setConfig',
       data: config
