@@ -131,7 +131,7 @@ gulp.task('doc',function () {
       if (stdout) console.log(stdout);
       if (stderr) console.log(stderr);
       if (err) console.log(err);
-      gutil.log(gutil.colors.cyan('Documentation generated in ./doc/!'));
+      gutil.log(gutil.colors.cyan('Documentation generated in ./docs/!'));
     });
   }
 });
