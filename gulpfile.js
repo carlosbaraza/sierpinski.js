@@ -156,12 +156,17 @@ gulp.task('watch', function() {
     .on('change', reload);
 });
 
-gulp.task('default', [
+gulp.task('build', [
   'scripts:client',
   'scripts:client:workers',
   'scripts:vendor:client',
   'sass',
   'fonts',
+  'doc'
+]);
+
+gulp.task('default', [
+  'build',
   'watch',
   'tdd'
 ]);
