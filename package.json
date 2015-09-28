@@ -24,6 +24,7 @@
     "gulp-util": "^3.0.6",
     "ink-docstrap": "git://github.com/terryweiss/docstrap.git#4992dc633797f7d86a0861934513a6bbae2cae95",
     "jasmine-core": "^2.3.4",
+    "jsdoc": "git+https://github.com/jsdoc3/jsdoc.git",
     "karma": "^0.13.10",
     "karma-browserify": "^4.3.0",
     "karma-chrome-launcher": "^0.2.0",
