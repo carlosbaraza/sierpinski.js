@@ -13,6 +13,13 @@ animate();
 import { zoomAndPanStart } from './interactions';
 zoomAndPanStart(stage, renderer);
 
+// Rudimentary loading handler. ToDo: Implement real loading state track.
+setTimeout(() => {
+  var loadingEl = document.getElementById('loading');
+  loadingEl.classList.add('fade-out');
+  setTimeout(() => loadingEl.style.display = "none", 500);
+}, 1000);
+
 // Debugging globals
 window.renderer = renderer;
 window.stage = stage;

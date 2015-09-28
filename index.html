@@ -3,8 +3,27 @@
     <!-- Stylesheets bundle -->
     <link rel="stylesheet" href="/dist/client/styles/main.css" media="screen"
           title="Stylesheets bundle" charset="utf-8">
+    <link rel="icon" type="image/png" href="/client/images/logo-32.png">
   </head>
   <body>
+    <!-- Inline styling to accelerate appearance of Loading -->
+    <div id="loading" class="loading"
+         style="position: absolute;
+                width: 100%;
+                height: 100%;
+                z-index: 100;
+                background-color: #101;
+                color: white;">
+      <div class="container" style="text-align: center;
+                                    position: relative;
+                                    top: 45%;">
+        <img src="/client/images/logo-128-white.png" alt="Sierpinski 128x128" />
+        <p>
+          ... Loading ...
+        </p>
+      </div>
+    </div>
+
     <nav id="nav">
       <h1>ARM ♥ Sierpinski Triangle</h1>
       <ul>
