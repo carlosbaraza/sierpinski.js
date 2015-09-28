@@ -2,6 +2,7 @@
  * @file Grid constructor. See {@link Grid}
  * @description See {@link Grid} for further information.
  * @module workers/grid
+ * @class Grid
  */
 
 import _ from 'lodash';

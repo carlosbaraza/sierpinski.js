@@ -5,7 +5,8 @@ var gulp        = require('gulp'),
     sass        = require('gulp-sass'),
     gutil       = require('gulp-util'),
     exec        = require('child_process').exec,
-    through     = require('through2');
+    through     = require('through2'),
+    autoprefixer = require('gulp-autoprefixer');
 
 // BrowserSync (Eases development)
 var browserSync = require('browser-sync').create(),
@@ -55,6 +56,10 @@ gulp.task('scripts:vendor:client', function () {
 gulp.task('sass', function () {
   gulp.src('client/styles/main.scss')
     .pipe(sass().on('error', sass.logError))
+    .pipe(autoprefixer({
+      browsers: ['last 2 versions'],
+      cascade: false
+    }))
     .pipe(gulp.dest('dist/client/styles'));
 });
 
@@ -126,7 +131,7 @@ gulp.task('doc',function () {
       if (stdout) console.log(stdout);
       if (stderr) console.log(stderr);
       if (err) console.log(err);
-      gutil.log(gutil.colors.cyan('Documentation generated in ./doc/!'));
+      gutil.log(gutil.colors.cyan('Documentation generated in ./docs/!'));
     });
   }
 });
@@ -151,12 +156,17 @@ gulp.task('watch', function() {
     .on('change', reload);
 });
 
-gulp.task('default', [
+gulp.task('build', [
   'scripts:client',
   'scripts:client:workers',
   'scripts:vendor:client',
   'sass',
   'fonts',
+  'doc'
+]);
+
+gulp.task('default', [
+  'build',
   'watch',
   'tdd'
 ]);
