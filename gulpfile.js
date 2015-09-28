@@ -5,7 +5,8 @@ var gulp        = require('gulp'),
     sass        = require('gulp-sass'),
     gutil       = require('gulp-util'),
     exec        = require('child_process').exec,
-    through     = require('through2');
+    through     = require('through2'),
+    autoprefixer = require('gulp-autoprefixer');
 
 // BrowserSync (Eases development)
 var browserSync = require('browser-sync').create(),
@@ -55,6 +56,10 @@ gulp.task('scripts:vendor:client', function () {
 gulp.task('sass', function () {
   gulp.src('client/styles/main.scss')
     .pipe(sass().on('error', sass.logError))
+    .pipe(autoprefixer({
+      browsers: ['last 2 versions'],
+      cascade: false
+    }))
     .pipe(gulp.dest('dist/client/styles'));
 });
 
