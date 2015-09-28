@@ -19,6 +19,14 @@ export function zoomAndPanStart(stage, renderer) {
   var hammer = new Hammer.Manager(renderer.view);
 
   addDragAndDropListeners();
+  addPinchListener();
+
+  function addPinchListener() {
+    hammer.add( new Hammer.Pinch({threshold: 0, pointers: 2}) );
+    hammer.on('pinchstart pinchmove', (e) => {
+      zoom(e.center.x, e.center.y, e.scale > 1);
+    });
+  }
 
   function zoom(x, y, isZoomIn) {
     var direction = isZoomIn ? 1 : -1;
@@ -50,7 +58,7 @@ export function zoomAndPanStart(stage, renderer) {
   function addDragAndDropListeners() {
     var prevX, prevY;
 
-    hammer.add( new Hammer.Pan({threshold: 0, pointers: 0}) );
+    hammer.add( new Hammer.Pan({threshold: 0, pointers: 1}) );
 
     hammer.on('panstart panmove', function(e) {
       if (e.type == 'panstart') {
