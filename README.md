@@ -1,7 +1,7 @@
 [![Build status](http://arm.carlosbaraza.com/ci/projects/1/status.png?ref=develop)]
 (http://arm.carlosbaraza.com/ci/projects/1?ref=develop)
 
-# ![Application schema](/client/images/logo-128.png?raw=true) Sierpinski.JS
+# ![Logo](client/images/logo-128.png?raw=true) Sierpinski.JS
 This single-page application shows a Sierpinski Triangle, where it is possible
 to freely zoom and pan infinitely.
 
@@ -38,11 +38,11 @@ to freely zoom and pan infinitely.
   * Workaround scale limit of 48E11 for infinite zoom.
 * ~~Nice UI to control the app.~~
   * ~~Navigation bar with stats and links to GitLab and JSDoc~~
-  * Better mobile version
+:  * Better mobile version
 * Cool WebGL shaders to beautify the Sierpinski Triangle.
 
 # Application schema
-![Application schema](/client/images/sierpinskijs-schema.png?raw=true)
+![Application schema](client/images/sierpinskijs-schema.png?raw=true)
 
 
 # Main algorithm improvement history:
