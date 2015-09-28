@@ -5,6 +5,7 @@
 @import 'reset';
 @import "transitions";
 @import 'font';
+@import 'vendor/font-awesome';
 
 body {
   overflow: hidden;
@@ -53,12 +54,12 @@ nav {
       border-bottom: #525 1px solid;
       background-color: #202;
       p {
-        margin-bottom: 5px;
+        margin-bottom: 10px;
         font-variant: small-caps;
+        &:last-child { margin-bottom: 0; }
       }
-      img {
-        width: 100%;
-      }
+      img { width: 1em; }
+      .subitems { padding-left: 10px; }
     }
   }
 }

@@ -58,6 +58,14 @@ gulp.task('sass', function () {
     .pipe(gulp.dest('dist/client/styles'));
 });
 
+/******************************************************************************/
+// Fonts
+/******************************************************************************/
+
+gulp.task('fonts', function () {
+  gulp.src('client/fonts/**/*')
+    .pipe(gulp.dest('dist/client/fonts'));
+});
 
 /******************************************************************************/
 // Tests
@@ -84,7 +92,8 @@ gulp.task('ci', [
     'scripts:client',
     'scripts:client:workers',
     'scripts:vendor:client',
-    'sass'
+    'sass',
+    'fonts'
   ], function (done) {
     new Server({
       configFile: __dirname + '/.ci.karma.conf.js',
@@ -147,6 +156,7 @@ gulp.task('default', [
   'scripts:client:workers',
   'scripts:vendor:client',
   'sass',
+  'fonts',
   'watch',
   'tdd'
 ]);
