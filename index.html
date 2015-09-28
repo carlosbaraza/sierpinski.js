@@ -1,12 +1,63 @@
 <html>
   <head>
-    <script src="/dist/client/scripts/vendor.js" charset="utf-8"></script>
-    <script src="/dist/client/scripts/app.js" charset="utf-8"></script>
+    <!-- Stylesheets bundle -->
+    <link rel="stylesheet" href="/dist/client/styles/main.css" media="screen"
+          title="Stylesheets bundle" charset="utf-8">
+    <link rel="icon" type="image/png" href="/client/images/logo-32.png">
   </head>
   <body>
+    <!-- Inline styling to accelerate appearance of Loading -->
+    <div id="loading" class="loading"
+         style="position: absolute;
+                width: 100%;
+                height: 100%;
+                z-index: 100;
+                background-color: #101;
+                color: white;">
+      <div class="container" style="text-align: center;
+                                    position: relative;
+                                    top: 45%;">
+        <img src="/client/images/logo-128-white.png" alt="Sierpinski 128x128" />
+        <p>
+          ... Loading ...
+        </p>
+      </div>
+    </div>
+
+    <nav id="nav">
+      <h1><strong>ARM</strong> <span class="love">♥</span> Sierpinski Triangle</h1>
+      <ul>
+        <li id="nav-stats">
+          <p><i class="fa fa-tachometer"></i> Stats</p>
+        </li>
+        <a href="http://arm.carlosbaraza.com/carlosbaraza/sierpinski.js">
+          <li id="gitlab-logo">
+            <p>
+              <img src="/client/images/gitlab-logo-square.png" alt="GitLab Logo"/>
+              Gitlab
+            </p>
+          </li>
+        </a>
+        <li id="nav-usage">
+          <p><i class="fa fa-info-circle"></i> Usage</p>
+          <div class="subitems">
+            <p><i class="fa fa-search"></i> Scroll</p>
+            <p><i class="fa fa-arrows"></i> Drag</p>
+          </div>
+        </li>
+      </ul>
+    </nav>
+
     <canvas id="canvas">
       Your browser doesn't support HTML5.
       Please, use an <a href="http://browsehappy.com/">evergreen browser</a>.
     </canvas>
+
+    <!-- Scripts -->
+    <script src="/bower_components/pixi/bin/pixi.js" charset="utf-8"></script>
+    <script src="/bower_components/stats.js/build/stats.min.js" charset="utf-8"></script>
+    <script src="/bower_components/hammerjs/hammer.min.js" charset="utf-8"></script>
+    <script src="/dist/client/scripts/vendor.js" charset="utf-8"></script>
+    <script src="/dist/client/scripts/app.js" charset="utf-8"></script>
   </body>
 </html>
