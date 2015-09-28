@@ -133,3 +133,43 @@ handling manually the PIXI scene scaling, loosing some of the PIXI.JS
 optimizations. The main idea would be to reset the main stage scale after some
 augmentations, and scale up the visible elements, keeping track of the
 number of resets, in order to be able to zoom out.
+
+# Setup environment
+1. Clone this repository
+2. Give execution permisions to bash script `chmod +x setup.sh`
+3. Run the bash script `./setup.sh` to setup the environment
+
+The script is basically doing
+```bash
+npm install bower
+npm install gulp
+npm install
+./node_modules/bower/bin/bower install --allow-root
+./node_modules/gulp/bin/gulp.js build
+```
+
+# Run development environment
+This repository uses `browser-sync` to speed up the development. To run the
+development environment:
+
+```
+gulp
+```
+
+# Build and Docs generation
+```
+gulp build
+```
+
+# Run the tests
+To run once the tests:
+
+```
+gulp test
+```
+
+or to watch and rerun after modifications:
+
+```
+gulp tdd
+```
