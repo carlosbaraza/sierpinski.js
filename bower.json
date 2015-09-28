@@ -15,6 +15,7 @@
   ],
   "dependencies": {
     "pixi": "~3.0.7",
-    "stats.js": "*"
+    "stats.js": "*",
+    "hammerjs": "~2.0.4"
   }
 }

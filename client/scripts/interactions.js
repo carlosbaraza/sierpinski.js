@@ -16,6 +16,8 @@ export function zoomAndPanStart(stage, renderer) {
     zoom(e.clientX - 100, e.clientY, e.deltaY < 0);
   });
 
+  var hammer = new Hammer.Manager(renderer.view);
+
   addDragAndDropListeners();
 
   function zoom(x, y, isZoomIn) {
@@ -46,26 +48,17 @@ export function zoomAndPanStart(stage, renderer) {
   }
 
   function addDragAndDropListeners() {
-    var isDragging = false,
-        prevX, prevY;
+    var prevX, prevY;
 
-    renderer.view.onmousedown = (e) => {
-      prevX = e.clientX;
-      prevY = e.clientY;
-      isDragging = true;
-    };
+    hammer.add( new Hammer.Pan({threshold: 0, pointers: 0}) );
 
-    renderer.view.onmousemove = (e) => {
-      if (!isDragging) return;
-      var dx = e.clientX - prevX;
-      var dy = e.clientY - prevY;
-
-      stage.position.x += dx;
-      stage.position.y += dy;
-      prevX = e.clientX;
-      prevY = e.clientY;
-    };
-
-    renderer.view.onmouseup = (e) => isDragging = false;
+    hammer.on('panstart panmove', function(e) {
+      if (e.type == 'panstart') {
+        prevX = stage.position.x;
+        prevY = stage.position.y;
+      }
+      stage.position.x = prevX + e.deltaX;
+      stage.position.y = prevY + e.deltaY;
+    });
   }
 }
