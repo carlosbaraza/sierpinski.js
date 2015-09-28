@@ -51,8 +51,9 @@ export default {
  */
 function getCanvas() {
   var el = document.getElementById('canvas'),
-      width = el.offsetWidth,
-      height = el.offsetHeight;
+      styles = window.getComputedStyle(el),
+      width = el.clientWidth - parseFloat(styles.paddingLeft),
+      height = el.clientHeight;
   return { el, width, height };
 }
 

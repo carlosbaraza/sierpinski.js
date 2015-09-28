@@ -13,7 +13,7 @@ import { addWheelListener } from './lib/wheelListener';
  */
 export function zoomAndPanStart(stage, renderer) {
   addWheelListener(renderer.view, (e) => {
-    zoom(e.clientX, e.clientY, e.deltaY < 0);
+    zoom(e.clientX - 100, e.clientY, e.deltaY < 0);
   });
 
   addDragAndDropListeners();

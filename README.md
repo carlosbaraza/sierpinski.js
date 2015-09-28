@@ -36,7 +36,7 @@ to freely zoom and pan undefinitly.
     element.~~
   * ~~Optimize performance. Move culling, splitting and merging to workers.~~
   * Workaround scale limit of 48E11 for infinite zoom.
-* Nice UI to control the app.
+* ~~Nice UI to control the app.~~
 * Cool WebGL shaders to beautify the Sierpinski Triangle.
 
 
