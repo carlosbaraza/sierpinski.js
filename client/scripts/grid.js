@@ -7,7 +7,7 @@
 import * as draw from './lib/draw';
 import { renderer, stage } from './stage';
 
-cacheChildren(3000);
+cacheChildren(300);
 
 var worker = createGridWorker();
 
@@ -63,7 +63,6 @@ function createGridWorker() {
  */
 var _workerMessageHandlers = {
   update: function (data) {
-    _.each(stage.children, (graphics) => graphics.visible = false);
     for (var i = 0; i < data.length; i++) {
       stage.children[i].x = data[i].x;
       stage.children[i].y = data[i].y;
@@ -71,6 +70,8 @@ var _workerMessageHandlers = {
       stage.children[i].height = data[i].height;
       stage.children[i].visible = data[i].visible;
     }
+    // Hide the rest of cached elements
+    for (i; i < stage.children.length; i++) stage.children[i].visible = false;
   }
 };
 

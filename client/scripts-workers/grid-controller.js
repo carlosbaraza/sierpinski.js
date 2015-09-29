@@ -33,7 +33,7 @@ var _messageHandlers = {
  * @param  {MessageEvent} e.data - Message sent from main thread to workers
  */
 onmessage = function (e) {
-  var msg = JSON.parse(e.data);
+  var msg = e.data && JSON.parse(e.data);
   if (_messageHandlers[msg.type]) {
     _messageHandlers[msg.type](msg.data);
   }

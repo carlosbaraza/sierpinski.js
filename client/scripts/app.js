@@ -6,7 +6,7 @@
  */
 
 import _ from 'lodash';
-import { renderer, stage } from './stage';
+import { renderer, stage, bg } from './stage';
 import { animate } from './animate';
 animate();
 
@@ -23,4 +23,5 @@ setTimeout(() => {
 // Debugging globals
 window.renderer = renderer;
 window.stage = stage;
+window.bg = bg;
 window._ = _;
