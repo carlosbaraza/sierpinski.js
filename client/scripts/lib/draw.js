@@ -42,7 +42,7 @@ export function sierpinskiTriangle(opts) {
   return graphics;
 }
 
-function _splitChildren(triangles) {
+export function _splitChildren(triangles) {
   return triangles.map(function findSplitableTriangles(obj) {
     if (obj.constructor === Array)
       return obj.map(findSplitableTriangles);
@@ -50,7 +50,7 @@ function _splitChildren(triangles) {
   });
 }
 
-function _drawTriangles(graphics, triangles) {
+export function _drawTriangles(graphics, triangles) {
   _.each(_.flattenDeep(triangles), (tr) => {
     // Draw equilateral triangle shape
     graphics.moveTo(tr.x, tr.y);

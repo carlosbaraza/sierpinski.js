@@ -13,6 +13,9 @@ h1 {
   }
   .love {
     color: #DBD;
+		&:hover {
+			cursor: pointer;
+		}
   }
 }
 h3 {

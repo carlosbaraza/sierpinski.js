@@ -21,6 +21,7 @@ setTimeout(() => {
 }, 1000);
 
 // Debugging globals
+import {} from './lib/angry-sierpinski';
 window.renderer = renderer;
 window.stage = stage;
 window.bg = bg;
