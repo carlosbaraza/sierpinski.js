@@ -10,8 +10,9 @@ import { renderer, stage, bg } from './stage';
 import { animate } from './animate';
 animate();
 
-import { zoomAndPanStart } from './interactions';
+import { zoomAndPanStart, menuHamburgerSetup } from './interactions';
 zoomAndPanStart(stage, renderer);
+menuHamburgerSetup(stage, bg);
 
 // Rudimentary loading handler. ToDo: Implement real loading state track.
 setTimeout(() => {

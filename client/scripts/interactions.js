@@ -7,13 +7,38 @@
 import { addWheelListener } from './lib/wheelListener';
 
 /**
+ * Add listener to menu hamburguer button to show/hide menu in mobile.
+ * @param  {PIXI.Container} stage - stage that will be blured
+ * @param  {PIXI.Container} bg - background that will be blured
+ */
+export function menuHamburgerSetup(stage, bg) {
+  var burgerEl = document.getElementById('button-menu-burger');
+
+  burgerEl.onclick = () => {
+    burgerEl.parentElement.classList.toggle('hidden');
+
+    // Blur the stage
+    if (stage.filters == null) { // use coercion to check if undefined or null
+      var blurFilter = new PIXI.filters.BlurFilter();
+      blurFilter.blur = 10;
+      stage.filters = [blurFilter];
+      bg.filters = [blurFilter];
+    } else {
+      stage.filters = null;
+      bg.filters = null;
+    }
+  };
+}
+
+/**
  * Exported function to initiate the zoom and panning in the app.
  * @param  {PIXI.Container} stage - Container of the objects.
  * @param  {PIXI.WebGLRenderer} renderer - Object that extends canvas.
  */
 export function zoomAndPanStart(stage, renderer) {
   addWheelListener(renderer.view, (e) => {
-    zoom(e.clientX - 100, e.clientY, e.deltaY < 0);
+    var paddingLeft = window.getComputedStyle(renderer.view)['padding-left'];
+    zoom(e.clientX - parseInt(paddingLeft), e.clientY, e.deltaY < 0);
   });
 
   var hammer = new Hammer.Manager(renderer.view);
