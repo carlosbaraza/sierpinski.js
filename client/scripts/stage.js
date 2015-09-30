@@ -14,8 +14,6 @@ var renderer = new PIXI.WebGLRenderer(canvas.width, canvas.height, {
 /** Update renderer size after resize. */
 window.onresize = resizePixiRenderer;
 
-fixiOSDisplay(canvas);
-
 /**
  * Main container. It will be rendered by the renderer during the animate loop.
  */
@@ -66,15 +64,4 @@ function getCanvas() {
 function resizePixiRenderer() {
   var canvas = getCanvas();
   renderer.resize(canvas.width, canvas.height);
-}
-
-/**
- * Fix strange display bug with padding 100px (nav width) and border-box.
- */
-function fixiOSDisplay(canvasElement) {
-  var userAgent = window.navigator.userAgent;
-
-  if (userAgent.match(/iPad/i) || userAgent.match(/iPhone/i)) {
-    canvas.el.style.left = '50px';
-  }
 }
